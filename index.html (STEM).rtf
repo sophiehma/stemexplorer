@@ -1,0 +1,1459 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>\
+  <title>STEMExplorer</title>\
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>\
+  <style>\
+    :root \{\
+      --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #085041;\
+      --amber: #EF9F27; --amber-light: #FAEEDA;\
+      --coral: #D85A30; --coral-light: #FAECE7;\
+      --blue: #378ADD; --blue-light: #E6F1FB;\
+      --purple: #7F77DD; --purple-light: #EEEDFE;\
+      --bg: #FAFAF8; --text: #1a1a18; --muted: #5F5E5A;\
+      --border: #D3D1C7; --card-bg: #ffffff;\
+    \}\
+    * \{ box-sizing: border-box; margin: 0; padding: 0; \}\
+    body \{ font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; \}\
+    h1,h2,h3,h4,.nav-logo \{ font-family: 'Syne', sans-serif; \}\
+    nav \{ background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 2rem; \}\
+    .nav-inner \{ max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; \}\
+    .nav-logo \{ font-size: 1.4rem; font-weight: 800; color: var(--green-dark); letter-spacing: -0.5px; \}\
+    .nav-logo span \{ color: var(--amber); \}\
+    .nav-links \{ display: flex; gap: 0.25rem; list-style: none; flex-wrap: wrap; \}\
+    .nav-links button \{ background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--muted); padding: 0.5rem 0.75rem; border-radius: 8px; transition: background 0.15s, color 0.15s; font-weight: 500; \}\
+    .nav-links button:hover \{ background: var(--green-light); color: var(--green-dark); \}\
+    .nav-links button.active \{ background: var(--green-light); color: var(--green-dark); font-weight: 700; \}\
+    .page \{ display: none; \}\
+    .page.active \{ display: block; \}\
+\
+    /* HOME */\
+    .hero \{ max-width: 1100px; margin: 0 auto; padding: 5rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; \}\
+    .hero-badge \{ display: inline-block; background: var(--amber-light); color: #633806; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.2rem; \}\
+    .hero h1 \{ font-size: clamp(2rem,4vw,3.2rem); font-weight: 800; line-height: 1.15; color: var(--green-dark); margin-bottom: 1.2rem; \}\
+    .hero h1 em \{ font-style: normal; color: var(--amber); \}\
+    .hero p \{ color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 480px; \}\
+    .hero-btns \{ display: flex; gap: 1rem; flex-wrap: wrap; \}\
+    .btn-primary \{ background: var(--green); color: #fff; border: none; padding: 0.75rem 1.5rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.15s; \}\
+    .btn-primary:hover \{ background: var(--green-dark); \}\
+    .btn-outline \{ background: none; color: var(--green-dark); border: 1.5px solid var(--green); padding: 0.75rem 1.5rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.15s; \}\
+    .btn-outline:hover \{ background: var(--green-light); \}\
+    .hero-visual \{ background: linear-gradient(135deg, var(--green-light) 0%, var(--amber-light) 100%); border-radius: 24px; height: 360px; display: flex; align-items: center; justify-content: center; \}\
+    .mission-section \{ background: var(--green-dark); color: #fff; padding: 4rem 2rem; text-align: center; \}\
+    .mission-section h2 \{ font-size: 1.8rem; font-weight: 700; margin-bottom: 1.2rem; color: #fff; \}\
+    .mission-section p \{ max-width: 700px; margin: 0 auto; font-size: 1.05rem; line-height: 1.8; color: #9FE1CB; \}\
+    .home-topics \{ max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; \}\
+    .home-topics h2 \{ font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; \}\
+    .home-topics .subtitle \{ color: var(--muted); margin-bottom: 2rem; \}\
+    .topics-preview \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; \}\
+    .topic-chip \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1rem; text-align: center; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; \}\
+    .topic-chip:hover \{ transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.08); \}\
+    .topic-chip h4 \{ font-size: 0.95rem; font-weight: 700; color: var(--green-dark); \}\
+\
+    /* EXPLORE */\
+    .explore-header \{ background: var(--green-dark); color: #fff; padding: 3.5rem 2rem 2.5rem; text-align: center; \}\
+    .explore-header h1 \{ font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; \}\
+    .explore-header p \{ color: #9FE1CB; max-width: 560px; margin: 0 auto; \}\
+    .explore-grid \{ max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; \}\
+    .topic-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; \}\
+    .topic-card:hover \{ transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); \}\
+    .topic-card-header \{ padding: 1.5rem 1.5rem 1rem; display: flex; align-items: center; gap: 1rem; \}\
+    .topic-icon \{ width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0; font-family: 'Syne', sans-serif; \}\
+    .topic-card h3 \{ font-size: 1.15rem; font-weight: 700; color: var(--green-dark); \}\
+    .topic-card .tag \{ display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 20px; margin-top: 0.25rem; \}\
+    .topic-card-body \{ padding: 0 1.5rem 1.5rem; \}\
+    .topic-card-body .blurb-label \{ font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin: 0.75rem 0 0.25rem; \}\
+    .topic-card-body p \{ font-size: 0.92rem; color: var(--muted); line-height: 1.6; \}\
+\
+    /* GAMES TAB */\
+    .games-header \{ background: var(--green-dark); color: #fff; padding: 3.5rem 2rem 2.5rem; text-align: center; \}\
+    .games-header h1 \{ font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; \}\
+    .games-header p \{ color: #9FE1CB; max-width: 560px; margin: 0 auto; \}\
+    .games-layout \{ max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: start; \}\
+    .games-menu \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; position: sticky; top: 80px; \}\
+    .games-menu-item \{ display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.25rem; cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.15s; font-weight: 500; font-size: 0.95rem; color: var(--text); \}\
+    .games-menu-item:last-child \{ border-bottom: none; \}\
+    .games-menu-item:hover \{ background: var(--green-light); color: var(--green-dark); \}\
+    .games-menu-item.active \{ background: var(--green-light); color: var(--green-dark); font-weight: 700; \}\
+    .games-menu-item .gicon \{ font-size: 1.4rem; \}\
+    .game-panel \{ display: none; \}\
+    .game-panel.active \{ display: block; \}\
+    .game-panel-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; \}\
+    .game-panel-card h2 \{ font-size: 1.4rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.25rem; \}\
+    .game-panel-card .game-desc \{ color: var(--muted); font-size: 0.92rem; margin-bottom: 1.5rem; \}\
+\
+    /* SHARED GAME STYLES */\
+    .g-score-row \{ display: flex; gap: 10px; margin-bottom: 1.25rem; \}\
+    .g-score-box \{ background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 16px; flex: 1; text-align: center; \}\
+    .g-score-label \{ font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; \}\
+    .g-score-val \{ font-size: 1.5rem; font-weight: 700; color: var(--green-dark); \}\
+    .g-fb \{ margin-top: 1rem; font-size: 0.9rem; font-weight: 500; border-radius: 10px; padding: 10px 14px; display: none; \}\
+    .g-fb.show \{ display: block; \}\
+    .g-fb.ok \{ background: var(--green-light); color: var(--green-dark); \}\
+    .g-fb.no \{ background: var(--coral-light); color: #712B13; \}\
+    .g-fb.info \{ background: var(--blue-light); color: #0C447C; \}\
+    .g-hint-btn \{ font-size: 0.82rem; color: var(--muted); background: none; border: none; cursor: pointer; padding: 4px 0; text-decoration: underline; display: inline-block; margin-top: 6px; font-family: 'DM Sans', sans-serif; \}\
+    .g-reset-btn \{ margin-top: 1rem; background: none; border: 1.5px solid var(--green); color: var(--green-dark); padding: 0.5rem 1.2rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer; font-weight: 600; \}\
+    .g-reset-btn:hover \{ background: var(--green-light); \}\
+\
+    /* BIOLOGY GAME */\
+    .bio-layout \{ display: grid; grid-template-columns: 1fr 200px; gap: 1.5rem; align-items: start; \}\
+    .bio-svg-wrap \{ background: var(--bg); border-radius: 12px; border: 1px solid var(--border); padding: 1rem; \}\
+    .dz \{ cursor: pointer; \}\
+    .dz .hit \{ fill: transparent; stroke: #B4B2A9; stroke-width: 1.5; stroke-dasharray: 5 3; transition: fill 0.2s, stroke 0.2s; \}\
+    .dz:hover .hit \{ fill: rgba(29,158,117,0.1); stroke: #1D9E75; \}\
+    .dz.correct .hit \{ fill: #E1F5EE; stroke: #1D9E75; stroke-dasharray: none; \}\
+    .dz.wrong .hit \{ fill: #FAECE7; stroke: #D85A30; stroke-dasharray: none; \}\
+    .dz .zt \{ font-size: 10px; fill: #888780; text-anchor: middle; pointer-events: none; \}\
+    .dz.correct .zt \{ fill: #085041; font-weight: 600; font-size: 9px; \}\
+    .organ-list \{ display: flex; flex-direction: column; gap: 7px; \}\
+    .organ-btn \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 11px; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: var(--text); text-align: left; display: flex; align-items: center; gap: 8px; transition: background 0.15s; font-family: 'DM Sans', sans-serif; \}\
+    .organ-btn:hover:not(:disabled) \{ background: var(--green-light); \}\
+    .organ-btn.sel \{ border-color: var(--green); background: var(--green-light); color: var(--green-dark); \}\
+    .organ-btn:disabled \{ opacity: 0.3; cursor: default; \}\
+    .odot \{ width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; \}\
+\
+    /* CS GAME */\
+    .cs-blocks \{ display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; \}\
+    .cs-block \{ background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 0.75rem 1rem; cursor: grab; font-family: monospace; font-size: 0.95rem; color: var(--text); display: flex; align-items: center; gap: 0.75rem; user-select: none; transition: border-color 0.15s, background 0.15s; \}\
+    .cs-block:hover \{ border-color: var(--blue); background: var(--blue-light); \}\
+    .cs-block.dragging \{ opacity: 0.4; \}\
+    .cs-block.correct-pos \{ border-color: var(--green); background: var(--green-light); \}\
+    .cs-block .block-num \{ width: 24px; height: 24px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--muted); flex-shrink: 0; font-family: 'DM Sans', sans-serif; \}\
+    .cs-check-btn \{ background: var(--blue); color: #fff; border: none; padding: 0.65rem 1.4rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.15s; \}\
+    .cs-check-btn:hover \{ background: #185FA5; \}\
+\
+    /* CHEMISTRY GAME */\
+    .chem-beakers \{ display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; align-items: flex-end; \}\
+    .chem-beaker-wrap \{ text-align: center; \}\
+    .chem-beaker-label \{ font-size: 0.78rem; font-weight: 700; color: var(--muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.3px; \}\
+    .chem-beaker \{ width: 80px; height: 100px; border: 3px solid #888780; border-top: none; border-radius: 0 0 16px 16px; position: relative; overflow: hidden; cursor: pointer; background: #fff; transition: border-color 0.2s; \}\
+    .chem-beaker:hover \{ border-color: var(--amber); \}\
+    .chem-beaker.selected-chem \{ border-color: var(--green); border-width: 3px; \}\
+    .chem-liquid \{ position: absolute; bottom: 0; left: 0; right: 0; height: 60%; transition: background 0.5s; border-radius: 0 0 13px 13px; \}\
+    .chem-label \{ font-size: 0.78rem; font-weight: 600; margin-top: 0.5rem; color: var(--text); \}\
+    .chem-arrow \{ font-size: 1.5rem; color: var(--muted); align-self: center; font-family: 'Syne', sans-serif; \}\
+    .chem-result-beaker \{ width: 100px; height: 120px; border: 3px solid #888780; border-top: none; border-radius: 0 0 18px 18px; position: relative; overflow: hidden; background: #fff; \}\
+    .chem-result-liquid \{ position: absolute; bottom: 0; left: 0; right: 0; height: 0%; transition: height 0.6s, background 0.5s; border-radius: 0 0 15px 15px; \}\
+    .chem-combos \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; margin-bottom: 1rem; \}\
+    .chem-combo-btn \{ background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: var(--text); font-family: 'DM Sans', sans-serif; transition: background 0.15s; text-align: left; \}\
+    .chem-combo-btn:hover \{ background: var(--amber-light); \}\
+\
+    /* ENGINEERING GAME */\
+    .eng-bridge \{ width: 100%; height: 140px; background: linear-gradient(180deg, var(--blue-light) 60%, #8BC4F4 100%); border-radius: 12px; position: relative; margin-bottom: 1.25rem; border: 1px solid var(--border); overflow: hidden; \}\
+    .eng-water \{ position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(180deg, #8BC4F4, #378ADD); border-radius: 0 0 12px 12px; \}\
+    .eng-pillar \{ position: absolute; bottom: 35%; width: 16px; background: #888780; border-radius: 4px 4px 0 0; \}\
+    .eng-deck \{ position: absolute; height: 12px; border-radius: 4px; transition: background 0.4s; \}\
+    .eng-car \{ position: absolute; bottom: calc(35% + 48px); transition: left 1.5s linear; \}\
+    .eng-materials \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 0.75rem; margin-bottom: 1.25rem; \}\
+    .eng-mat-btn \{ background: var(--bg); border: 2px solid var(--border); border-radius: 12px; padding: 0.75rem; cursor: pointer; text-align: center; transition: border-color 0.15s, background 0.15s; font-family: 'DM Sans', sans-serif; \}\
+    .eng-mat-btn:hover \{ border-color: var(--coral); background: var(--coral-light); \}\
+    .eng-mat-btn.selected-mat \{ border-color: var(--green); background: var(--green-light); \}\
+    .eng-mat-btn .mat-swatch \{ width: 28px; height: 28px; border-radius: 6px; margin: 0 auto 0.4rem; border: 1.5px solid rgba(0,0,0,0.1); \}\
+    .eng-mat-btn .mat-name \{ font-size: 0.85rem; font-weight: 700; color: var(--green-dark); \}\
+    .eng-mat-btn .mat-desc \{ font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; \}\
+    .eng-test-btn \{ background: var(--coral); color: #fff; border: none; padding: 0.65rem 1.4rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.15s; \}\
+    .eng-test-btn:hover \{ background: #993C1D; \}\
+    .eng-test-btn:disabled \{ opacity: 0.4; cursor: default; \}\
+\
+    /* ENV GAME */\
+    .env-items-grid \{ display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 0.75rem; margin-bottom: 1.5rem; \}\
+    .env-item \{ background: var(--bg); border: 2px solid var(--border); border-radius: 12px; padding: 0.6rem 0.5rem; text-align: center; cursor: pointer; transition: border-color 0.15s, transform 0.15s; \}\
+    .env-item:hover \{ transform: translateY(-2px); border-color: var(--green); \}\
+    .env-item.used \{ opacity: 0.3; pointer-events: none; \}\
+    .env-item .ename \{ font-size: 0.78rem; font-weight: 600; color: var(--muted); \}\
+    .env-bins \{ display: flex; gap: 1rem; flex-wrap: wrap; \}\
+    .env-bin \{ flex: 1; min-width: 100px; background: var(--bg); border: 2px dashed var(--border); border-radius: 14px; padding: 1rem; text-align: center; transition: border-color 0.2s, background 0.2s; cursor: pointer; \}\
+    .env-bin.highlight \{ border-color: var(--green); background: var(--green-light); \}\
+    .env-bin .bin-dot \{ width: 16px; height: 16px; border-radius: 50%; margin: 0 auto 0.4rem; \}\
+    .env-bin .bin-name \{ font-size: 0.85rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.5rem; \}\
+    .env-bin .bin-count \{ font-size: 0.75rem; color: var(--muted); \}\
+    .env-selected-bar \{ background: var(--amber-light); border-radius: 10px; padding: 0.6rem 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #633806; font-weight: 600; display: none; \}\
+    .env-selected-bar.show \{ display: block; \}\
+\
+    /* PHYSICS GAME */\
+    .phys-canvas-wrap \{ background: linear-gradient(180deg, #E6F1FB 0%, #FAFAF8 100%); border-radius: 14px; border: 1px solid var(--border); height: 200px; position: relative; overflow: hidden; margin-bottom: 1.25rem; \}\
+    .phys-ramp \{ position: absolute; bottom: 40px; left: 20px; transform-origin: bottom left; background: #888780; height: 8px; border-radius: 4px; transition: transform 0.3s; \}\
+    .phys-ground \{ position: absolute; bottom: 0; left: 0; right: 0; height: 40px; background: #C0DD97; border-radius: 0 0 14px 14px; \}\
+    .phys-ball \{ position: absolute; border-radius: 50%; background: var(--coral); border: 3px solid #993C1D; \}\
+    .phys-distance-marker \{ position: absolute; bottom: 40px; height: 20px; border-left: 2px dashed var(--green); \}\
+    .phys-distance-label \{ position: absolute; bottom: 62px; font-size: 0.72rem; font-weight: 700; color: var(--green-dark); transform: translateX(-50%); white-space: nowrap; \}\
+    .phys-controls \{ display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; \}\
+    .phys-control-group label \{ font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.4rem; \}\
+    .phys-control-group input[type=range] \{ width: 100%; accent-color: var(--green); \}\
+    .phys-control-group .val-display \{ font-size: 1rem; font-weight: 700; color: var(--green-dark); \}\
+    .phys-launch-btn \{ background: var(--purple); color: #fff; border: none; padding: 0.65rem 1.4rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.15s; \}\
+    .phys-launch-btn:hover \{ background: #534AB7; \}\
+    .phys-launch-btn:disabled \{ opacity: 0.4; cursor: default; \}\
+\
+    /* QUIZ */\
+    .quiz-wrap \{ max-width: 680px; margin: 0 auto; padding: 3.5rem 2rem; \}\
+    .quiz-wrap h1 \{ font-size: 2rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.5rem; \}\
+    .quiz-wrap .intro \{ color: var(--muted); margin-bottom: 2.5rem; \}\
+    .quiz-box \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; \}\
+    .quiz-progress \{ font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; \}\
+    .quiz-bar \{ height: 6px; background: var(--border); border-radius: 10px; margin-bottom: 1.75rem; overflow: hidden; \}\
+    .quiz-bar-fill \{ height: 100%; background: var(--green); border-radius: 10px; transition: width 0.3s; \}\
+    .quiz-q \{ font-size: 1.1rem; font-weight: 600; margin-bottom: 1.25rem; \}\
+    .quiz-options \{ display: flex; flex-direction: column; gap: 0.65rem; \}\
+    .quiz-option \{ background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.75rem 1rem; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; text-align: left; color: var(--text); transition: border-color 0.15s, background 0.15s; \}\
+    .quiz-option:hover \{ border-color: var(--green); background: var(--green-light); \}\
+    .quiz-option.selected \{ border-color: var(--green); background: var(--green-light); color: var(--green-dark); font-weight: 500; \}\
+    .quiz-nav \{ display: flex; justify-content: space-between; align-items: center; margin-top: 1.75rem; \}\
+    .quiz-result \{ text-align: center; padding: 1rem 0; \}\
+    .quiz-result h2 \{ font-size: 1.5rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.5rem; \}\
+    .quiz-result p \{ color: var(--muted); margin-bottom: 1.5rem; \}\
+    .quiz-result .result-tags \{ display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; \}\
+    .quiz-result .rtag \{ background: var(--green-light); color: var(--green-dark); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.85rem; font-weight: 600; \}\
+\
+    /* ABOUT */\
+    .about-wrap \{ max-width: 720px; margin: 0 auto; padding: 4rem 2rem; \}\
+    .about-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; margin-bottom: 1.5rem; \}\
+    .creator-top \{ display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; \}\
+    .creator-avatar \{ width: 72px; height: 72px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 3px solid var(--green); overflow: hidden; \}\
+    .creator-avatar img \{ width: 100%; height: 100%; object-fit: cover; border-radius: 50%; \}\
+    .creator-name \{ font-size: 1.3rem; font-weight: 800; color: var(--green-dark); \}\
+    .creator-role \{ color: var(--muted); font-size: 0.9rem; \}\
+    .about-card p \{ color: var(--muted); line-height: 1.75; margin-bottom: 1rem; \}\
+    .about-card p:last-child \{ margin-bottom: 0; \}\
+    .about-card h3 \{ font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.75rem; \}\
+\
+    /* RESOURCES */\
+    .resources-wrap \{ max-width: 720px; margin: 0 auto; padding: 4rem 2rem; text-align: center; \}\
+    .coming-soon-badge \{ display: inline-block; background: var(--amber-light); color: #633806; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.5rem; \}\
+    .resources-wrap h1 \{ font-size: 2rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.75rem; \}\
+    .resources-wrap .sub \{ color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; \}\
+    .resource-preview-grid \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 2.5rem; \}\
+    .resource-preview-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1rem; opacity: 0.6; \}\
+    .resource-preview-card .res-dot \{ width: 20px; height: 20px; border-radius: 50%; margin: 0 auto 0.75rem; \}\
+    .resource-preview-card h4 \{ font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.25rem; \}\
+    .resource-preview-card p \{ font-size: 0.82rem; color: var(--muted); \}\
+    .notify-box \{ background: var(--green-light); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; \}\
+    .notify-box h3 \{ font-size: 1.1rem; font-weight: 700; color: var(--green-dark); \}\
+    .notify-box p \{ color: var(--muted); font-size: 0.9rem; \}\
+    .notify-row \{ display: flex; gap: 0.5rem; width: 100%; max-width: 400px; \}\
+    .notify-row input \{ flex: 1; padding: 0.65rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; background: #fff; color: var(--text); \}\
+    .notify-row input:focus \{ outline: none; border-color: var(--green); \}\
+\
+    footer \{ background: var(--green-dark); color: #9FE1CB; text-align: center; padding: 2rem; font-size: 0.85rem; margin-top: 4rem; \}\
+    footer strong \{ color: #fff; \}\
+\
+    @media (max-width: 700px) \{\
+      .hero \{ grid-template-columns: 1fr; \}\
+      .hero-visual \{ height: 200px; \}\
+      .games-layout \{ grid-template-columns: 1fr; \}\
+      .games-menu \{ position: static; \}\
+      .bio-layout \{ grid-template-columns: 1fr; \}\
+      .phys-controls \{ grid-template-columns: 1fr; \}\
+    \}\
+  </style>\
+</head>\
+<body>\
+\
+<nav>\
+  <div class="nav-inner">\
+    <div class="nav-logo">STEM<span>Explorer</span></div>\
+    <ul class="nav-links">\
+      <li><button onclick="showPage('home')" id="nav-home" class="active">Home</button></li>\
+      <li><button onclick="showPage('explore')" id="nav-explore">Explore STEM</button></li>\
+      <li><button onclick="showPage('games')" id="nav-games">Games</button></li>\
+      <li><button onclick="showPage('quiz')" id="nav-quiz">Find Your STEM</button></li>\
+      <li><button onclick="showPage('about')" id="nav-about">About</button></li>\
+      <li><button onclick="showPage('resources')" id="nav-resources">Resources</button></li>\
+    </ul>\
+  </div>\
+</nav>\
+\
+<!-- HOME -->\
+<div class="page active" id="page-home">\
+  <div class="hero">\
+    <div>\
+      <div class="hero-badge">Free &amp; For Everyone</div>\
+      <h1>STEM should feel like <em>play,</em> not a lecture.</h1>\
+      <p>We turn big ideas in science, technology, and engineering into simple explanations, real-world examples, and hands-on exploration, especially for students who don't always get these opportunities at school.</p>\
+      <div class="hero-btns">\
+        <button class="btn-primary" onclick="showPage('explore')">Explore Topics</button>\
+        <button class="btn-outline" onclick="showPage('quiz')">Find Your STEM</button>\
+      </div>\
+    </div>\
+    <div class="hero-visual">\
+      <svg viewBox="0 0 260 260" width="220" xmlns="http://www.w3.org/2000/svg">\
+        <circle cx="130" cy="130" r="90" fill="none" stroke="#1D9E75" stroke-width="2" opacity="0.25"/>\
+        <circle cx="130" cy="130" r="60" fill="none" stroke="#EF9F27" stroke-width="2" opacity="0.3"/>\
+        <circle cx="130" cy="130" r="14" fill="#1D9E75" opacity="0.35"/>\
+        <circle cx="185" cy="90" r="10" fill="#EF9F27" opacity="0.55"/>\
+        <circle cx="72"  cy="155" r="10" fill="#7F77DD" opacity="0.55"/>\
+        <circle cx="160" cy="178" r="8"  fill="#D85A30" opacity="0.55"/>\
+        <circle cx="95"  cy="76"  r="7"  fill="#378ADD" opacity="0.55"/>\
+        <line x1="130" y1="130" x2="185" y2="90"  stroke="#888780" stroke-width="1.5" opacity="0.35"/>\
+        <line x1="130" y1="130" x2="72"  y2="155" stroke="#888780" stroke-width="1.5" opacity="0.35"/>\
+        <line x1="130" y1="130" x2="160" y2="178" stroke="#888780" stroke-width="1.5" opacity="0.35"/>\
+        <line x1="130" y1="130" x2="95"  y2="76"  stroke="#888780" stroke-width="1.5" opacity="0.35"/>\
+        <line x1="185" y1="90"  x2="95"  y2="76"  stroke="#888780" stroke-width="1"   opacity="0.2"/>\
+        <line x1="72"  y1="155" x2="160" y2="178" stroke="#888780" stroke-width="1"   opacity="0.2"/>\
+      </svg>\
+    </div>\
+  </div>\
+  <div class="mission-section">\
+    <h2>Our Mission</h2>\
+    <p>Our mission is to open the door to STEM for anyone who is curious but doesn't know where to start. We turn big ideas in science, technology, and engineering into simple explanations, real-world examples, and hands-on exploration. We believe that STEM should feel less like a textbook and more like something you can play with, question, and understand. We also teach material that schools may not always cover, especially for students who don't have access to those kinds of opportunities.</p>\
+  </div>\
+  <div class="home-topics">\
+    <h2>What will you explore?</h2>\
+    <p class="subtitle">Six topics, zero prerequisites. Start anywhere.</p>\
+    <div class="topics-preview">\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Biology</h4></div>\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Computer Science</h4></div>\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Chemistry</h4></div>\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Engineering</h4></div>\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Environmental Science</h4></div>\
+      <div class="topic-chip" onclick="showPage('explore')"><h4>Physics</h4></div>\
+    </div>\
+  </div>\
+</div>\
+\
+<!-- EXPLORE -->\
+<div class="page" id="page-explore">\
+  <div class="explore-header">\
+    <h1>Explore STEM</h1>\
+    <p>Six fields, explained simply. What they are, and what real people do in them every day.</p>\
+  </div>\
+  <div class="explore-grid">\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#E1F5EE;color:#085041;">BIO</div><div><h3>Biology</h3><span class="tag" style="background:#E1F5EE;color:#085041;">Life Science</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Biology is the study of life and living things, from tiny bacteria that can only be seen with a microscope to giant whales and elephants. It helps us understand how living things grow and change, such as a caterpillar turning into a butterfly. Biology also teaches us how our bodies work, like how the heart pumps blood around the body to keep us alive and healthy. It shows how plants, animals, and people are connected to nature, such as when bees help flowers grow by carrying pollen from one flower to another.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>Biology is a very broad topic, and biologists study living things in many different ways. Some work in labs using microscopes to examine cells and bacteria, while others study animals and plants in their natural habitats. They may run experiments, collect samples, or analyze data to understand how life works. Biologists can work in research, healthcare, conservation, or education.</p>\
+      </div>\
+    </div>\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#E6F1FB;color:#0C447C;">CS</div><div><h3>Computer Science</h3><span class="tag" style="background:#E6F1FB;color:#0C447C;">Technology</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Computer science is the study of computers, technology, and how information is processed. It teaches us how to design programs, solve problems, and create systems that help people in their everyday lives. Computer science explains how apps, websites (like this one!), video games, and AI work.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>People in this field are often called software developers, computer scientists, or programmers. They spend their time writing code, testing programs, and fixing bugs. Some create apps, websites, and video games, while others work in areas like cybersecurity, artificial intelligence, and data analysis.</p>\
+      </div>\
+    </div>\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#FAEEDA;color:#633806;">CHEM</div><div><h3>Chemistry</h3><span class="tag" style="background:#FAEEDA;color:#633806;">Physical Science</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Chemistry is the study of matter and how different substances interact and change. It helps us understand what everything around us is made of, from the air we breathe to the food we eat. Chemistry explains why certain reactions happen, such as baking a cake or rust forming on metal.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>Chemists study substances and how they change and react. Many work in labs where they mix chemicals, run experiments, and carefully record what happens. Some help develop new medicines, while others work on creating better materials, safer products, or cleaner energy sources.</p>\
+      </div>\
+    </div>\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#FAECE7;color:#712B13;">ENG</div><div><h3>Engineering</h3><span class="tag" style="background:#FAECE7;color:#712B13;">Design &amp; Build</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Engineering is the application of science, mathematics, and technology to design, build, and improve structures, machines, systems, and processes. It combines creativity, problem-solving, and technical knowledge to develop solutions that meet human needs and solve real-world challenges.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>Engineers design, develop, test, and improve products, systems, and structures to solve real-world problems. Depending on their field, they may work on buildings, machines, transportation systems, computers, energy solutions, or medical devices.</p>\
+      </div>\
+    </div>\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#EAF3DE;color:#27500A;">ENV</div><div><h3>Environmental Science</h3><span class="tag" style="background:#EAF3DE;color:#27500A;">Earth &amp; Climate</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Environmental science is the study of the natural world and how humans interact with it. It helps us understand ecosystems, natural resources, weather patterns, and the impact people have on the environment. It explores topics such as pollution, climate change, conservation, and biodiversity.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>Environmental scientists, ecologists, and conservationists study nature, collect samples, and analyze data about air, water, soil, plants, and animals. Many focus on solving problems like pollution, climate change, and habitat loss to help protect the environment.</p>\
+      </div>\
+    </div>\
+    <div class="topic-card">\
+      <div class="topic-card-header"><div class="topic-icon" style="background:#EEEDFE;color:#3C3489;">PHY</div><div><h3>Physics</h3><span class="tag" style="background:#EEEDFE;color:#3C3489;">Forces &amp; Energy</span></div></div>\
+      <div class="topic-card-body">\
+        <div class="blurb-label">What is it?</div>\
+        <p>Physics is the study of matter, energy, forces, and motion. It helps us understand how and why things move, from a ball rolling across the ground to planets orbiting the Sun. Physics explains everyday phenomena such as gravity, electricity, and light.</p>\
+        <div class="blurb-label">What do people in this field do?</div>\
+        <p>Physicists study how forces, energy, and motion work in the universe. Many spend their days doing experiments, building models, or using computers to test ideas. They help develop technologies from medical imaging machines to satellites and renewable energy systems.</p>\
+      </div>\
+    </div>\
+  </div>\
+</div>\
+\
+<!-- GAMES -->\
+<div class="page" id="page-games">\
+  <div class="games-header">\
+    <h1>STEM Games</h1>\
+    <p>Pick a topic and play your way into understanding it.</p>\
+  </div>\
+  <div class="games-layout">\
+    <div class="games-menu">\
+      <div class="games-menu-item active" onclick="showGame('bio')" id="gmenu-bio"><span class="gicon">\uc0\u55358 \u56812 </span> Biology</div>\
+      <div class="games-menu-item" onclick="showGame('cs')" id="gmenu-cs"><span class="gicon">\uc0\u55357 \u56507 </span> Computer Science</div>\
+      <div class="games-menu-item" onclick="showGame('chem')" id="gmenu-chem"><span class="gicon">\uc0\u9879 \u65039 </span> Chemistry</div>\
+      <div class="games-menu-item" onclick="showGame('eng')" id="gmenu-eng"><span class="gicon">\uc0\u55357 \u56615 </span> Engineering</div>\
+      <div class="games-menu-item" onclick="showGame('env')" id="gmenu-env"><span class="gicon">\uc0\u55356 \u57101 </span> Environmental Science</div>\
+      <div class="games-menu-item" onclick="showGame('phys')" id="gmenu-phys"><span class="gicon">\uc0\u55357 \u56621 </span> Physics</div>\
+    </div>\
+\
+    <div>\
+      <!-- BIOLOGY GAME -->\
+      <div class="game-panel active" id="gpanel-bio">\
+        <div class="game-panel-card">\
+          <h2>Body Organ Placement</h2>\
+          <p class="game-desc">Select an organ from the list, then click where it belongs on the body.</p>\
+          <div class="g-score-row">\
+            <div class="g-score-box"><div class="g-score-label">Correct</div><div class="g-score-val" id="bio-cc">0</div></div>\
+            <div class="g-score-box"><div class="g-score-label">Remaining</div><div class="g-score-val" id="bio-rc">9</div></div>\
+          </div>\
+          <div class="bio-layout">\
+            <div class="bio-svg-wrap">\
+              <svg viewBox="0 0 220 480" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">\
+\
+                <!-- HEAD: oval, slight jaw narrowing -->\
+                <path d="M110,5 Q138,5 139,36 Q139,64 110,70 Q81,64 81,36 Q81,5 110,5"\
+                      fill="none" stroke="#888780" stroke-width="2"/>\
+                <!-- Ears -->\
+                <path d="M81,30 Q76,36 81,46" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round"/>\
+                <path d="M139,30 Q144,36 139,46" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round"/>\
+                <!-- Eyes -->\
+                <ellipse cx="100" cy="32" rx="5" ry="4" fill="none" stroke="#888780" stroke-width="1.2"/>\
+                <circle cx="100" cy="32" r="2" fill="#888780"/>\
+                <ellipse cx="120" cy="32" rx="5" ry="4" fill="none" stroke="#888780" stroke-width="1.2"/>\
+                <circle cx="120" cy="32" r="2" fill="#888780"/>\
+                <!-- Nose -->\
+                <path d="M110,40 Q107,46 108,50 Q110,52 112,50 Q113,46 110,40"\
+                      fill="none" stroke="#888780" stroke-width="1.2" stroke-linecap="round"/>\
+                <!-- Mouth -->\
+                <path d="M105,57 Q110,62 115,57"\
+                      fill="none" stroke="#888780" stroke-width="1.3" stroke-linecap="round"/>\
+\
+                <!-- NECK -->\
+                <line x1="103" y1="68" x2="101" y2="84" stroke="#888780" stroke-width="1.8"/>\
+                <line x1="117" y1="68" x2="119" y2="84" stroke="#888780" stroke-width="1.8"/>\
+\
+                <!-- COLLARBONE -->\
+                <path d="M101,85 Q110,89 119,85" fill="none" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="4 2"/>\
+\
+                <!-- BODY SILHOUETTE: left shoulder to hip -->\
+                <path d="M101,84 Q88,86 74,96 Q70,102 70,110 Q70,150 74,175 Q78,200 80,220 Q79,242 80,255 Q84,268 90,272"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- BODY SILHOUETTE: right shoulder to hip -->\
+                <path d="M119,84 Q132,86 146,96 Q150,102 150,110 Q150,150 146,175 Q142,200 140,220 Q141,242 140,255 Q136,268 130,272"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- Crotch -->\
+                <path d="M90,272 Q110,282 130,272" fill="none" stroke="#888780" stroke-width="2"/>\
+\
+                <!-- LEFT ARM: outer -->\
+                <path d="M74,96 Q62,120 56,170 Q52,198 50,222"\
+                      fill="none" stroke="#888780" stroke-width="1.8" stroke-linecap="round"/>\
+                <!-- LEFT ARM: inner -->\
+                <path d="M80,100 Q72,124 70,174 Q68,202 66,226"\
+                      fill="none" stroke="#888780" stroke-width="1.8" stroke-linecap="round"/>\
+                <!-- Left hand -->\
+                <ellipse cx="58" cy="229" rx="10" ry="6" fill="none" stroke="#888780" stroke-width="1.5"/>\
+\
+                <!-- RIGHT ARM: outer -->\
+                <path d="M146,96 Q158,120 164,170 Q168,198 170,222"\
+                      fill="none" stroke="#888780" stroke-width="1.8" stroke-linecap="round"/>\
+                <!-- RIGHT ARM: inner -->\
+                <path d="M140,100 Q148,124 150,174 Q152,202 154,226"\
+                      fill="none" stroke="#888780" stroke-width="1.8" stroke-linecap="round"/>\
+                <!-- Right hand -->\
+                <ellipse cx="162" cy="229" rx="10" ry="6" fill="none" stroke="#888780" stroke-width="1.5"/>\
+\
+                <!-- LEFT LEG: outer -->\
+                <path d="M90,272 Q84,295 80,330 Q76,370 76,432"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- LEFT LEG: inner -->\
+                <path d="M110,278 Q106,300 104,333 Q102,373 102,432"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- Left foot -->\
+                <path d="M76,432 Q74,440 80,444 Q94,448 102,444 Q108,440 102,432"\
+                      fill="none" stroke="#888780" stroke-width="1.5"/>\
+\
+                <!-- RIGHT LEG: inner -->\
+                <path d="M110,278 Q114,300 116,333 Q118,373 118,432"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- RIGHT LEG: outer -->\
+                <path d="M130,272 Q136,295 140,330 Q144,370 144,432"\
+                      fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round"/>\
+                <!-- Right foot -->\
+                <path d="M118,432 Q112,440 118,444 Q126,448 144,444 Q150,440 144,432"\
+                      fill="none" stroke="#888780" stroke-width="1.5"/>\
+\
+                <!-- CENTER LINE -->\
+                <line x1="110" y1="90" x2="110" y2="272" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="4 3"/>\
+                <!-- RIBCAGE hints -->\
+                <path d="M80,110 Q96,118 110,118 Q124,118 140,110" fill="none" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="3 2"/>\
+                <path d="M79,124 Q96,134 110,134 Q124,134 141,124" fill="none" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="3 2"/>\
+                <path d="M79,138 Q96,150 110,150 Q124,150 141,138" fill="none" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="3 2"/>\
+\
+                <!-- DROP ZONES -->\
+                <g class="dz" id="zone-brain" onclick="bioDrop('brain')">\
+                  <ellipse class="hit" cx="110" cy="36" rx="22" ry="24"/>\
+                  <text class="zt" id="zt-brain" x="110" y="68">?</text>\
+                </g>\
+                <g class="dz" id="zone-heart" onclick="bioDrop('heart')">\
+                  <ellipse class="hit" cx="96" cy="120" rx="15" ry="15"/>\
+                  <text class="zt" id="zt-heart" x="96" y="140">?</text>\
+                </g>\
+                <g class="dz" id="zone-lungs" onclick="bioDrop('lungs')">\
+                  <ellipse class="hit" cx="124" cy="120" rx="15" ry="15"/>\
+                  <text class="zt" id="zt-lungs" x="124" y="140">?</text>\
+                </g>\
+                <g class="dz" id="zone-stomach" onclick="bioDrop('stomach')">\
+                  <ellipse class="hit" cx="97" cy="168" rx="15" ry="13"/>\
+                  <text class="zt" id="zt-stomach" x="97" y="186">?</text>\
+                </g>\
+                <g class="dz" id="zone-liver" onclick="bioDrop('liver')">\
+                  <ellipse class="hit" cx="123" cy="165" rx="13" ry="12"/>\
+                  <text class="zt" id="zt-liver" x="123" y="182">?</text>\
+                </g>\
+                <g class="dz" id="zone-left-kidney" onclick="bioDrop('left-kidney')">\
+                  <ellipse class="hit" cx="90" cy="198" rx="11" ry="13"/>\
+                  <text class="zt" id="zt-left-kidney" x="90" y="215">?</text>\
+                </g>\
+                <g class="dz" id="zone-right-kidney" onclick="bioDrop('right-kidney')">\
+                  <ellipse class="hit" cx="130" cy="198" rx="11" ry="13"/>\
+                  <text class="zt" id="zt-right-kidney" x="130" y="215">?</text>\
+                </g>\
+                <g class="dz" id="zone-intestines" onclick="bioDrop('intestines')">\
+                  <ellipse class="hit" cx="110" cy="234" rx="24" ry="20"/>\
+                  <text class="zt" id="zt-intestines" x="110" y="258">?</text>\
+                </g>\
+                <g class="dz" id="zone-bladder" onclick="bioDrop('bladder')">\
+                  <ellipse class="hit" cx="110" cy="262" rx="12" ry="10"/>\
+                  <text class="zt" id="zt-bladder" x="110" y="276">?</text>\
+                </g>\
+              </svg>\
+            </div>\
+            <div>\
+              <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">Select an organ</div>\
+              <div class="organ-list">\
+                <button class="organ-btn" id="btn-brain" onclick="bioSel('brain')"><span class="odot" style="background:#7F77DD"></span>Brain</button>\
+                <button class="organ-btn" id="btn-heart" onclick="bioSel('heart')"><span class="odot" style="background:#D85A30"></span>Heart</button>\
+                <button class="organ-btn" id="btn-lungs" onclick="bioSel('lungs')"><span class="odot" style="background:#378ADD"></span>Lungs</button>\
+                <button class="organ-btn" id="btn-stomach" onclick="bioSel('stomach')"><span class="odot" style="background:#EF9F27"></span>Stomach</button>\
+                <button class="organ-btn" id="btn-liver" onclick="bioSel('liver')"><span class="odot" style="background:#639922"></span>Liver</button>\
+                <button class="organ-btn" id="btn-left-kidney" onclick="bioSel('left-kidney')"><span class="odot" style="background:#D4537E"></span>Left kidney</button>\
+                <button class="organ-btn" id="btn-right-kidney" onclick="bioSel('right-kidney')"><span class="odot" style="background:#D4537E"></span>Right kidney</button>\
+                <button class="organ-btn" id="btn-intestines" onclick="bioSel('intestines')"><span class="odot" style="background:#1D9E75"></span>Intestines</button>\
+                <button class="organ-btn" id="btn-bladder" onclick="bioSel('bladder')"><span class="odot" style="background:#888780"></span>Bladder</button>\
+              </div>\
+              <button class="g-hint-btn" onclick="bioHint()">Need a hint?</button>\
+              <div class="g-fb" id="bio-fb"></div>\
+              <button class="g-reset-btn" onclick="bioReset()">Reset</button>\
+            </div>\
+          </div>\
+        </div>\
+      </div>\
+\
+      <!-- CS GAME -->\
+      <div class="game-panel" id="gpanel-cs">\
+        <div class="game-panel-card">\
+          <h2>Fix the Code</h2>\
+          <p class="game-desc">These code blocks are out of order. Drag them to rearrange so the program runs correctly. The goal: ask for a name, then say hello.</p>\
+          <div class="g-score-row">\
+            <div class="g-score-box"><div class="g-score-label">Attempts</div><div class="g-score-val" id="cs-attempts">0</div></div>\
+            <div class="g-score-box"><div class="g-score-label">Status</div><div class="g-score-val" id="cs-status">?</div></div>\
+          </div>\
+          <div id="cs-blocks" class="cs-blocks"></div>\
+          <button class="cs-check-btn" onclick="csCheck()">Run Code</button>\
+          <div class="g-fb" id="cs-fb"></div>\
+          <button class="g-reset-btn" onclick="csReset()">Reset</button>\
+        </div>\
+      </div>\
+\
+      <!-- CHEMISTRY GAME -->\
+      <div class="game-panel" id="gpanel-chem">\
+        <div class="game-panel-card">\
+          <h2>Mix It Up</h2>\
+          <p class="game-desc">Click two chemicals to combine them and see what reaction happens.</p>\
+          <div class="g-score-row">\
+            <div class="g-score-box"><div class="g-score-label">Combos Found</div><div class="g-score-val" id="chem-found">0</div></div>\
+            <div class="g-score-box"><div class="g-score-label">Total Combos</div><div class="g-score-val">6</div></div>\
+          </div>\
+          <div class="chem-beakers" id="chem-beakers"></div>\
+          <div class="g-fb" id="chem-fb"></div>\
+        </div>\
+      </div>\
+\
+      <!-- ENGINEERING GAME -->\
+      <div class="game-panel" id="gpanel-eng">\
+        <div class="game-panel-card">\
+          <h2>Build a Bridge</h2>\
+          <p class="game-desc">Choose a material for your bridge deck, then test if it can hold a car crossing the river.</p>\
+          <div class="eng-bridge" id="eng-bridge">\
+            <div class="eng-water"></div>\
+            <div class="eng-pillar" id="eng-p1" style="left:60px;height:52px;"></div>\
+            <div class="eng-pillar" id="eng-p2" style="right:60px;height:52px;"></div>\
+            <div class="eng-deck" id="eng-deck" style="left:58px;right:58px;bottom:calc(35% + 42px);background:#B4B2A9;"></div>\
+            <div id="eng-car" style="position:absolute;bottom:calc(35% + 54px);left:10px;"></div>\
+          </div>\
+          <div style="font-size:0.88rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.75rem;">Choose your material:</div>\
+          <div class="eng-materials" id="eng-materials"></div>\
+          <button class="eng-test-btn" id="eng-test-btn" onclick="engTest()" disabled>Test Bridge</button>\
+          <div class="g-fb" id="eng-fb"></div>\
+          <button class="g-reset-btn" onclick="engReset()">Reset</button>\
+        </div>\
+      </div>\
+\
+      <!-- ENVIRONMENTAL GAME -->\
+      <div class="game-panel" id="gpanel-env">\
+        <div class="game-panel-card">\
+          <h2>Sort It Out</h2>\
+          <p class="game-desc">Click an item to select it, then click the right bin to sort it. Where does each item belong?</p>\
+          <div class="g-score-row">\
+            <div class="g-score-box"><div class="g-score-label">Correct</div><div class="g-score-val" id="env-correct">0</div></div>\
+            <div class="g-score-box"><div class="g-score-label">Remaining</div><div class="g-score-val" id="env-remaining">12</div></div>\
+          </div>\
+          <div class="env-selected-bar" id="env-selected-bar">Selected: <span id="env-selected-name"></span> \'97 click a bin to sort it</div>\
+          <div class="env-items-grid" id="env-items"></div>\
+          <div class="env-bins" id="env-bins"></div>\
+          <div class="g-fb" id="env-fb"></div>\
+          <button class="g-reset-btn" onclick="envReset()">Reset</button>\
+        </div>\
+      </div>\
+\
+      <!-- PHYSICS GAME -->\
+      <div class="game-panel" id="gpanel-phys">\
+        <div class="game-panel-card">\
+          <h2>Ramp and Roll</h2>\
+          <p class="game-desc">Adjust the ramp angle and ball mass, then launch to see how far it travels. Try to beat 300 units.</p>\
+          <div class="phys-canvas-wrap" id="phys-canvas">\
+            <div class="phys-ground"></div>\
+            <div class="phys-ramp" id="phys-ramp" style="width:120px;bottom:40px;left:20px;"></div>\
+            <div class="phys-ball" id="phys-ball" style="width:28px;height:28px;bottom:41px;left:22px;"></div>\
+            <div class="phys-distance-marker" id="phys-marker" style="display:none;"></div>\
+            <div class="phys-distance-label" id="phys-dist-label" style="display:none;"></div>\
+          </div>\
+          <div class="phys-controls">\
+            <div class="phys-control-group">\
+              <label>Angle: <span class="val-display" id="phys-angle-val">30deg</span></label>\
+              <input type="range" min="10" max="70" value="30" id="phys-angle" oninput="physUpdateRamp()"/>\
+              <div style="font-size:0.78rem;color:var(--muted);">Higher angle = more height</div>\
+            </div>\
+            <div class="phys-control-group">\
+              <label>Mass: <span class="val-display" id="phys-mass-val">1 kg</span></label>\
+              <input type="range" min="1" max="5" value="1" id="phys-mass" oninput="physUpdateMass()"/>\
+              <div style="font-size:0.78rem;color:var(--muted);">Heavier = more force, more friction</div>\
+            </div>\
+          </div>\
+          <button class="phys-launch-btn" id="phys-launch-btn" onclick="physLaunch()">Launch</button>\
+          <div class="g-fb" id="phys-fb"></div>\
+          <button class="g-reset-btn" onclick="physReset()">Reset</button>\
+        </div>\
+      </div>\
+    </div>\
+  </div>\
+</div>\
+\
+<!-- QUIZ -->\
+<div class="page" id="page-quiz">\
+  <div class="quiz-wrap">\
+    <h1>Find Your STEM</h1>\
+    <p class="intro">Answer 10 questions and we'll match you to the STEM fields that fit how you think and what you care about.</p>\
+    <div class="quiz-box" id="quiz-box"></div>\
+  </div>\
+</div>\
+\
+<!-- ABOUT -->\
+<div class="page" id="page-about">\
+  <div class="about-wrap">\
+    <div class="about-card">\
+      <div class="creator-top">\
+        <div class="creator-avatar" id="creator-avatar">\
+          <span id="avatar-placeholder" style="width:100%;height:100%;background:var(--green-light);display:block;border-radius:50%;"></span>\
+        </div>\
+        <div>\
+          <div class="creator-name">Your Name Here</div>\
+          <div class="creator-role">Founder, STEMExplorer</div>\
+        </div>\
+      </div>\
+      <p>Write a short intro about yourself here. Who are you? What inspired you to start STEMExplorer?</p>\
+      <p>A second paragraph about your background, your connection to STEM, or what you hope this site does for people.</p>\
+    </div>\
+    <div class="about-card">\
+      <h3>Why STEMExplorer exists</h3>\
+      <p>Not everyone has access to great science programs at school. Not everyone knows which questions to ask, or where to start. STEMExplorer was built to change that, to make STEM feel like something you belong in, regardless of your background.</p>\
+      <p>Add anything else you want people to know here.</p>\
+    </div>\
+  </div>\
+</div>\
+\
+<!-- RESOURCES -->\
+<div class="page" id="page-resources">\
+  <div class="resources-wrap">\
+    <div class="coming-soon-badge">Coming Soon</div>\
+    <h1>Resources</h1>\
+    <p class="sub">We're building something great here. Sign up below to be the first to know when resources go live.</p>\
+    <div class="resource-preview-grid">\
+      <div class="resource-preview-card"><div class="res-dot" style="background:var(--amber-light);border:2px solid var(--amber);"></div><h4>Summer Camp</h4><p>Sign up for our hands-on STEM summer program</p></div>\
+      <div class="resource-preview-card"><div class="res-dot" style="background:var(--green-light);border:2px solid var(--green);"></div><h4>Volunteer</h4><p>Opportunities at local shelters and community orgs</p></div>\
+      <div class="resource-preview-card"><div class="res-dot" style="background:var(--blue-light);border:2px solid var(--blue);"></div><h4>Free Guides</h4><p>Downloadable STEM explainers and activity sheets</p></div>\
+      <div class="resource-preview-card"><div class="res-dot" style="background:var(--purple-light);border:2px solid var(--purple);"></div><h4>Useful Links</h4><p>Curated tools, videos, and outside resources</p></div>\
+    </div>\
+    <div class="notify-box">\
+      <h3>Get notified when we launch</h3>\
+      <p>Drop your email and we'll let you know when resources are ready.</p>\
+      <div class="notify-row">\
+        <input type="email" placeholder="your@email.com" id="notify-email"/>\
+        <button class="btn-primary" onclick="handleNotify()">Notify me</button>\
+      </div>\
+      <p id="notify-msg" style="color:var(--green-dark);font-weight:600;display:none;">You're on the list!</p>\
+    </div>\
+  </div>\
+</div>\
+\
+<footer>\
+  <strong>STEMExplorer</strong>: Opening the door to STEM for everyone.\
+</footer>\
+\
+<script>\
+// NAVIGATION\
+function showPage(id) \{\
+  document.querySelectorAll('.page').forEach(function(p)\{ p.classList.remove('active'); \});\
+  document.querySelectorAll('.nav-links button').forEach(function(b)\{ b.classList.remove('active'); \});\
+  document.getElementById('page-' + id).classList.add('active');\
+  document.getElementById('nav-' + id).classList.add('active');\
+  window.scrollTo(0, 0);\
+\}\
+\
+function showGame(id) \{\
+  document.querySelectorAll('.game-panel').forEach(function(p)\{ p.classList.remove('active'); \});\
+  document.querySelectorAll('.games-menu-item').forEach(function(m)\{ m.classList.remove('active'); \});\
+  document.getElementById('gpanel-' + id).classList.add('active');\
+  document.getElementById('gmenu-' + id).classList.add('active');\
+\}\
+\
+// BIOLOGY GAME\
+var bioOrgans = \{\
+  'brain':        \{ fact: "The brain uses 20% of your body's energy despite being only 2% of your weight." \},\
+  'heart':        \{ fact: "Your heart beats about 100,000 times a day, which adds up to over 2.5 billion beats in a lifetime." \},\
+  'lungs':        \{ fact: "Your lungs contain about 300 million tiny air sacs called alveoli to absorb oxygen." \},\
+  'stomach':      \{ fact: "Your stomach acid is strong enough to dissolve metal, but a mucus lining protects it." \},\
+  'liver':        \{ fact: "The liver performs over 500 functions, including filtering toxins from your blood." \},\
+  'left-kidney':  \{ fact: "Each kidney filters about 200 liters of blood every single day." \},\
+  'right-kidney': \{ fact: "You can live a full healthy life with just one kidney." \},\
+  'intestines':   \{ fact: "Your small intestine is about 20 feet long and absorbs most nutrients from food." \},\
+  'bladder':      \{ fact: "The bladder can stretch to hold about 2 cups of fluid and signals when it is half full." \}\
+\};\
+var bioHints = \{\
+  'brain':        "It is inside your head.",\
+  'heart':        "Left side of your chest, near the center.",\
+  'lungs':        "They fill most of your chest on both sides.",\
+  'stomach':      "Upper left abdomen, just below the ribs.",\
+  'liver':        "Upper right abdomen. It is your largest internal organ.",\
+  'left-kidney':  "Behind the stomach on the left.",\
+  'right-kidney': "Behind the liver on the right.",\
+  'intestines':   "They fill most of the lower abdomen.",\
+  'bladder':      "Lower center, below the intestines."\
+\};\
+var bioSel_v = null, bioCorrect = 0, bioPlaced = \{\};\
+\
+function bioSel(n) \{\
+  if (bioPlaced[n]) return;\
+  document.querySelectorAll('.organ-btn').forEach(function(b)\{ b.classList.remove('sel'); \});\
+  document.getElementById('btn-' + n).classList.add('sel');\
+  bioSel_v = n;\
+  bioHideFb();\
+\}\
+\
+function bioDrop(zone) \{\
+  if (!bioSel_v) \{ bioShowFb('Pick an organ from the list first.', 'no'); return; \}\
+  if (bioSel_v === zone) \{\
+    bioCorrect++;\
+    bioPlaced[bioSel_v] = true;\
+    document.getElementById('btn-' + bioSel_v).disabled = true;\
+    document.getElementById('btn-' + bioSel_v).classList.remove('sel');\
+    document.getElementById('zone-' + zone).classList.add('correct');\
+    document.getElementById('zt-' + zone).textContent = bioSel_v.replace('-', ' ').replace(/\\b\\w/g, function(c)\{ return c.toUpperCase(); \});\
+    bioShowFb('Correct! ' + bioOrgans[bioSel_v].fact, 'ok');\
+    document.getElementById('bio-cc').textContent = bioCorrect;\
+    document.getElementById('bio-rc').textContent = 9 - bioCorrect;\
+    bioSel_v = null;\
+    if (bioCorrect === 9) setTimeout(function()\{ bioShowFb('You placed all 9 organs correctly. Nice work!', 'ok'); \}, 400);\
+  \} else \{\
+    var z = document.getElementById('zone-' + zone);\
+    z.classList.add('wrong');\
+    setTimeout(function()\{ z.classList.remove('wrong'); \}, 700);\
+    bioShowFb('Not quite. Try a different spot.', 'no');\
+  \}\
+\}\
+\
+function bioHint() \{\
+  if (!bioSel_v) \{ bioShowFb('Select an organ first, then ask for a hint.', 'info'); return; \}\
+  bioShowFb('Hint: ' + bioHints[bioSel_v], 'info');\
+\}\
+\
+function bioShowFb(msg, type) \{\
+  var f = document.getElementById('bio-fb');\
+  f.textContent = msg;\
+  f.className = 'g-fb show ' + type;\
+\}\
+\
+function bioHideFb() \{ document.getElementById('bio-fb').className = 'g-fb'; \}\
+\
+function bioReset() \{\
+  bioSel_v = null; bioCorrect = 0; bioPlaced = \{\};\
+  document.getElementById('bio-cc').textContent = 0;\
+  document.getElementById('bio-rc').textContent = 9;\
+  document.querySelectorAll('.organ-btn').forEach(function(b)\{ b.disabled = false; b.classList.remove('sel'); \});\
+  document.querySelectorAll('.dz').forEach(function(z)\{ z.classList.remove('correct', 'wrong'); \});\
+  ['brain','heart','lungs','stomach','liver','left-kidney','right-kidney','intestines','bladder'].forEach(function(n)\{\
+    document.getElementById('zt-' + n).textContent = '?';\
+  \});\
+  bioHideFb();\
+\}\
+\
+// CS GAME\
+var csCorrectOrder = [\
+  \{ code: 'name = input("What is your name? ")', indent: 0 \},\
+  \{ code: 'greeting = "Hello, " + name', indent: 0 \},\
+  \{ code: 'if len(name) > 0:', indent: 0 \},\
+  \{ code: 'print(greeting)', indent: 1 \},\
+  \{ code: 'print("Nice to meet you!")', indent: 1 \}\
+];\
+var csCurrentOrder = [];\
+var csDragSrc = null;\
+\
+function csInit() \{\
+  csCurrentOrder = [2, 0, 4, 1, 3];\
+  csRender();\
+\}\
+\
+function csRender() \{\
+  var container = document.getElementById('cs-blocks');\
+  container.innerHTML = '';\
+  csCurrentOrder.forEach(function(idx, pos) \{\
+    var block = csCorrectOrder[idx];\
+    var div = document.createElement('div');\
+    div.className = 'cs-block';\
+    div.draggable = true;\
+    div.dataset.pos = pos;\
+    div.innerHTML = '<span class="block-num">' + (pos+1) + '</span><span style="padding-left:' + (block.indent * 20) + 'px;font-family:monospace;">' + block.code + '</span>';\
+    div.addEventListener('dragstart', function()\{ csDragSrc = pos; div.classList.add('dragging'); \});\
+    div.addEventListener('dragend', function()\{ div.classList.remove('dragging'); \});\
+    div.addEventListener('dragover', function(e)\{ e.preventDefault(); \});\
+    div.addEventListener('drop', function(e)\{\
+      e.preventDefault();\
+      if (csDragSrc === null || csDragSrc === pos) return;\
+      var tmp = csCurrentOrder[csDragSrc];\
+      csCurrentOrder[csDragSrc] = csCurrentOrder[pos];\
+      csCurrentOrder[pos] = tmp;\
+      csDragSrc = null;\
+      csRender();\
+    \});\
+    container.appendChild(div);\
+  \});\
+\}\
+\
+function csCheck() \{\
+  var attempts = parseInt(document.getElementById('cs-attempts').textContent) + 1;\
+  document.getElementById('cs-attempts').textContent = attempts;\
+  var correct = true;\
+  for (var i = 0; i < csCurrentOrder.length; i++) \{\
+    if (csCurrentOrder[i] !== i) \{ correct = false; break; \}\
+  \}\
+  var fb = document.getElementById('cs-fb');\
+  if (correct) \{\
+    document.getElementById('cs-status').textContent = 'Done';\
+    fb.textContent = 'The program runs correctly. It asks for a name, builds a greeting, checks the name is not empty, then prints it. This is basic sequential logic, the foundation of all coding.';\
+    fb.className = 'g-fb show ok';\
+    document.querySelectorAll('.cs-block').forEach(function(b)\{ b.classList.add('correct-pos'); \});\
+  \} else \{\
+    document.getElementById('cs-status').textContent = 'Not yet';\
+    fb.textContent = 'Not quite. Think about it: what needs to happen first before you can say hello to someone?';\
+    fb.className = 'g-fb show no';\
+  \}\
+\}\
+\
+function csReset() \{\
+  document.getElementById('cs-attempts').textContent = 0;\
+  document.getElementById('cs-status').textContent = '?';\
+  document.getElementById('cs-fb').className = 'g-fb';\
+  csInit();\
+\}\
+\
+// CHEMISTRY GAME\
+var chemChemicals = [\
+  \{ id: 'baking-soda', name: 'Baking Soda', color: '#EFEFEF',  texture: 'powder' \},\
+  \{ id: 'vinegar',     name: 'Vinegar',     color: '#FAEEDA',  texture: null \},\
+  \{ id: 'bleach',      name: 'Bleach',      color: '#D6EEFF',  texture: null \},\
+  \{ id: 'food-color',  name: 'Food Coloring',color: '#C8ABFA', texture: null \},\
+  \{ id: 'water',       name: 'Water',       color: '#B8D9F8',  texture: null \},\
+  \{ id: 'salt',        name: 'Salt',        color: '#E8E8E4',  texture: 'crystal' \}\
+];\
+var chemReactions = \{\
+  'baking-soda+vinegar': \{ result: 'Fizz! CO2 gas is produced as bubbles. This is an acid-base reaction, one of the most common in chemistry.', color: '#D4D0C4' \},\
+  'bleach+food-color':   \{ result: 'The color fades away. Bleach oxidizes and breaks apart the color molecules, leaving a pale liquid.', color: '#E8E6E0' \},\
+  'water+food-color':    \{ result: 'The color spreads through the water. This is called diffusion.', color: '#C8ABFA' \},\
+  'water+salt':          \{ result: 'The salt dissolves. Water molecules surround and pull apart the salt ions.', color: '#D6EEFF' \},\
+  'baking-soda+water':   \{ result: 'The baking soda dissolves, making the water slightly basic (alkaline). The liquid turns slightly cloudy.', color: '#DDD9CE' \},\
+  'vinegar+food-color':  \{ result: 'The color mixes into the acid. Vinegar is acetic acid, which is why it smells sharp.', color: '#FAC775' \}\
+\};\
+var chemSelected = null, chemFound = 0;\
+\
+function chemTextureBg(texture, color) \{\
+  if (texture === 'powder') \{\
+    return 'repeating-linear-gradient(45deg,rgba(160,160,160,0.18) 0px,rgba(160,160,160,0.18) 1px,transparent 1px,transparent 5px),' +\
+           'repeating-linear-gradient(-45deg,rgba(160,160,160,0.18) 0px,rgba(160,160,160,0.18) 1px,transparent 1px,transparent 5px),' + color;\
+  \}\
+  if (texture === 'crystal') \{\
+    return 'radial-gradient(1.5px 1.5px at 18% 22%,rgba(255,255,255,0.95) 0%,transparent 100%),' +\
+           'radial-gradient(1.5px 1.5px at 42% 68%,rgba(255,255,255,0.95) 0%,transparent 100%),' +\
+           'radial-gradient(1.5px 1.5px at 70% 30%,rgba(255,255,255,0.95) 0%,transparent 100%),' +\
+           'radial-gradient(1.5px 1.5px at 85% 72%,rgba(255,255,255,0.95) 0%,transparent 100%),' +\
+           'radial-gradient(1.5px 1.5px at 28% 84%,rgba(255,255,255,0.95) 0%,transparent 100%),' +\
+           'radial-gradient(2px 2px at 55% 50%,rgba(255,255,255,0.8) 0%,transparent 100%),' +\
+           'radial-gradient(1px 1px at 10% 55%,rgba(255,255,255,0.9) 0%,transparent 100%),' +\
+           'radial-gradient(1px 1px at 90% 15%,rgba(255,255,255,0.9) 0%,transparent 100%),' + color;\
+  \}\
+  return color;\
+\}\
+\
+function chemInit() \{\
+  var beakerDiv = document.getElementById('chem-beakers');\
+  beakerDiv.innerHTML = '';\
+  chemChemicals.forEach(function(c) \{\
+    var wrap = document.createElement('div');\
+    wrap.className = 'chem-beaker-wrap';\
+    var beaker = document.createElement('div');\
+    beaker.className = 'chem-beaker';\
+    beaker.id = 'cbeaker-' + c.id;\
+    beaker.onclick = function()\{ chemSelect(c.id); \};\
+    var liquid = document.createElement('div');\
+    liquid.className = 'chem-liquid';\
+    liquid.style.background = chemTextureBg(c.texture, c.color);\
+    beaker.appendChild(liquid);\
+    var label = document.createElement('div');\
+    label.className = 'chem-beaker-label';\
+    label.textContent = c.name;\
+    var nameLabel = document.createElement('div');\
+    nameLabel.className = 'chem-label';\
+    wrap.appendChild(label);\
+    wrap.appendChild(beaker);\
+    beakerDiv.appendChild(wrap);\
+  \});\
+  var arrow = document.createElement('div');\
+  arrow.className = 'chem-arrow';\
+  arrow.textContent = '+';\
+  beakerDiv.appendChild(arrow);\
+  var resultWrap = document.createElement('div');\
+  resultWrap.className = 'chem-beaker-wrap';\
+  var resLabel = document.createElement('div');\
+  resLabel.className = 'chem-beaker-label';\
+  resLabel.textContent = 'Result';\
+  var resBeaker = document.createElement('div');\
+  resBeaker.className = 'chem-result-beaker';\
+  var resLiquid = document.createElement('div');\
+  resLiquid.className = 'chem-result-liquid';\
+  resLiquid.id = 'chem-result-liquid';\
+  resBeaker.appendChild(resLiquid);\
+  resultWrap.appendChild(resLabel);\
+  resultWrap.appendChild(resBeaker);\
+  beakerDiv.appendChild(resultWrap);\
+\
+\}\
+\
+function chemSelect(id) \{\
+  if (!chemSelected) \{\
+    chemSelected = id;\
+    document.querySelectorAll('.chem-beaker').forEach(function(b)\{ b.classList.remove('selected-chem'); \});\
+    document.getElementById('cbeaker-' + id).classList.add('selected-chem');\
+    document.getElementById('chem-fb').className = 'g-fb show info';\
+    document.getElementById('chem-fb').textContent = 'Now click a second chemical to mix.';\
+    return;\
+  \}\
+  if (chemSelected === id) \{\
+    chemSelected = null;\
+    document.getElementById('cbeaker-' + id).classList.remove('selected-chem');\
+    document.getElementById('chem-fb').className = 'g-fb';\
+    return;\
+  \}\
+  var key1 = chemSelected + '+' + id;\
+  var key2 = id + '+' + chemSelected;\
+  var reaction = chemReactions[key1] || chemReactions[key2];\
+  var usedKey = chemReactions[key1] ? key1 : key2;\
+  var liquid = document.getElementById('chem-result-liquid');\
+  if (reaction) \{\
+    liquid.style.height = '70%';\
+    liquid.style.background = reaction.color;\
+    document.getElementById('chem-fb').className = 'g-fb show ok';\
+    document.getElementById('chem-fb').textContent = reaction.result;\
+    chemFound++;\
+    document.getElementById('chem-found').textContent = chemFound;\
+  \} else \{\
+    liquid.style.height = '30%';\
+    liquid.style.background = '#D3D1C7';\
+    document.getElementById('chem-fb').className = 'g-fb show no';\
+    document.getElementById('chem-fb').textContent = 'No dramatic reaction. These two don\\'t interact much. Try a different combination.';\
+  \}\
+  document.querySelectorAll('.chem-beaker').forEach(function(b)\{ b.classList.remove('selected-chem'); \});\
+  chemSelected = null;\
+\}\
+\
+// ENGINEERING GAME\
+var engMaterials = [\
+  \{ id: 'wood',     color: '#BA7517', name: 'Wood',     desc: 'Light but flexible',    strength: 60 \},\
+  \{ id: 'steel',    color: '#7A7A78', name: 'Steel',    desc: 'Heavy and very strong', strength: 95 \},\
+  \{ id: 'rope',     color: '#EF9F27', name: 'Rope',     desc: 'Flexible, low strength',strength: 25 \},\
+  \{ id: 'concrete', color: '#A8A6A0', name: 'Concrete', desc: 'Strong but rigid',      strength: 80 \},\
+  \{ id: 'bamboo',   color: '#7DB33A', name: 'Bamboo',   desc: 'Surprisingly strong',   strength: 70 \},\
+  \{ id: 'glass',    color: '#85B7EB', name: 'Glass',    desc: 'Brittle under weight',  strength: 15 \}\
+];\
+var engSelected = null, engTesting = false;\
+\
+function drawCar(el) \{\
+  el.innerHTML = '<svg width="44" height="24" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg">' +\
+    '<rect x="0" y="12" width="44" height="10" rx="3" fill="#5A86C4"/>' +\
+    '<path d="M8,12 L12,4 L30,4 L36,12 Z" fill="#85A8D4"/>' +\
+    '<rect x="13" y="5" width="7" height="5" rx="1" fill="#C8DEFA"/>' +\
+    '<rect x="22" y="5" width="7" height="5" rx="1" fill="#C8DEFA"/>' +\
+    '<circle cx="9" cy="22" r="4" fill="#222"/><circle cx="9" cy="22" r="2" fill="#555"/>' +\
+    '<circle cx="35" cy="22" r="4" fill="#222"/><circle cx="35" cy="22" r="2" fill="#555"/>' +\
+    '</svg>';\
+\}\
+\
+function engInit() \{\
+  var div = document.getElementById('eng-materials');\
+  div.innerHTML = '';\
+  engMaterials.forEach(function(m) \{\
+    var btn = document.createElement('div');\
+    btn.className = 'eng-mat-btn';\
+    btn.id = 'emat-' + m.id;\
+    btn.innerHTML = '<div class="mat-swatch" style="background:' + m.color + ';"></div>' +\
+                    '<div class="mat-name">' + m.name + '</div>' +\
+                    '<div class="mat-desc">' + m.desc + '</div>';\
+    btn.onclick = function() \{\
+      if (engTesting) return;\
+      document.querySelectorAll('.eng-mat-btn').forEach(function(b)\{ b.classList.remove('selected-mat'); \});\
+      btn.classList.add('selected-mat');\
+      engSelected = m;\
+      document.getElementById('eng-deck').style.background = m.color;\
+      document.getElementById('eng-test-btn').disabled = false;\
+      document.getElementById('eng-fb').className = 'g-fb';\
+    \};\
+    div.appendChild(btn);\
+  \});\
+  var car = document.getElementById('eng-car');\
+  drawCar(car);\
+  car.style.left = '10px';\
+  car.style.transition = 'none';\
+\}\
+\
+function engTest() \{\
+  if (!engSelected || engTesting) return;\
+  engTesting = true;\
+  document.getElementById('eng-test-btn').disabled = true;\
+\
+  var car = document.getElementById('eng-car');\
+  var bridge = document.getElementById('eng-bridge');\
+  var bridgeWidth = bridge.offsetWidth;\
+  var passes = engSelected.strength >= 50;\
+\
+  car.style.transition = 'none';\
+  car.style.left = (bridgeWidth * 0.05) + 'px';\
+\
+  setTimeout(function() \{\
+    car.style.transition = 'left 1.8s linear';\
+    car.style.left = (bridgeWidth * 0.75) + 'px';\
+\
+    setTimeout(function() \{\
+      var fb = document.getElementById('eng-fb');\
+      if (passes) \{\
+        car.style.left = (bridgeWidth * 0.92) + 'px';\
+        fb.textContent = 'The ' + engSelected.name + ' bridge holds. Strength rating: ' + engSelected.strength + '/100. Real engineers choose materials based on strength, cost, weight, and durability.';\
+        fb.className = 'g-fb show ok';\
+      \} else \{\
+        car.style.transition = 'left 0.3s, bottom 0.6s';\
+        car.style.bottom = '0px';\
+        fb.textContent = 'The ' + engSelected.name + ' bridge collapsed. Strength rating: ' + engSelected.strength + '/100. Not enough to support the weight. Try a stronger material.';\
+        fb.className = 'g-fb show no';\
+      \}\
+      engTesting = false;\
+      document.getElementById('eng-test-btn').disabled = false;\
+    \}, 1900);\
+  \}, 100);\
+\}\
+\
+function engReset() \{\
+  engSelected = null;\
+  engTesting = false;\
+  var car = document.getElementById('eng-car');\
+  car.style.transition = 'none';\
+  car.style.left = '10px';\
+  car.style.bottom = 'calc(35% + 54px)';\
+  drawCar(car);\
+  document.getElementById('eng-deck').style.background = '#B4B2A9';\
+  document.querySelectorAll('.eng-mat-btn').forEach(function(b)\{ b.classList.remove('selected-mat'); \});\
+  document.getElementById('eng-test-btn').disabled = true;\
+  document.getElementById('eng-fb').className = 'g-fb';\
+\}\
+\
+// ENVIRONMENTAL GAME\
+var envItems = [\
+  \{ id:'banana',    name:'Banana peel',    bin:'compost' \},\
+  \{ id:'bottle',    name:'Plastic bottle', bin:'recycle' \},\
+  \{ id:'newspaper', name:'Newspaper',      bin:'recycle' \},\
+  \{ id:'apple',     name:'Apple core',     bin:'compost' \},\
+  \{ id:'chip-bag',  name:'Chip bag',       bin:'trash'   \},\
+  \{ id:'cardboard', name:'Cardboard',      bin:'recycle' \},\
+  \{ id:'straw',     name:'Plastic straw',  bin:'trash'   \},\
+  \{ id:'leaves',    name:'Dead leaves',    bin:'compost' \},\
+  \{ id:'glass-jar', name:'Glass jar',      bin:'recycle' \},\
+  \{ id:'tissue',    name:'Used tissue',    bin:'trash'   \},\
+  \{ id:'eggshell',  name:'Eggshell',       bin:'compost' \},\
+  \{ id:'battery',   name:'Old battery',    bin:'trash'   \}\
+];\
+var envBins = [\
+  \{ id:'recycle', color:'#378ADD', name:'Recycle' \},\
+  \{ id:'compost', color:'#1D9E75', name:'Compost' \},\
+  \{ id:'trash',   color:'#888780', name:'Trash'   \}\
+];\
+var envSelectedItem = null, envCorrectCount = 0, envUsed = \{\};\
+\
+function envInit() \{\
+  var grid = document.getElementById('env-items');\
+  grid.innerHTML = '';\
+  envItems.forEach(function(item) \{\
+    var div = document.createElement('div');\
+    div.className = 'env-item';\
+    div.id = 'eitem-' + item.id;\
+    div.innerHTML = '<div class="ename">' + item.name + '</div>';\
+    div.onclick = function() \{\
+      if (envUsed[item.id]) return;\
+      document.querySelectorAll('.env-item').forEach(function(i)\{ i.style.borderColor = ''; \});\
+      div.style.borderColor = 'var(--green)';\
+      envSelectedItem = item;\
+      document.getElementById('env-selected-name').textContent = item.name;\
+      document.getElementById('env-selected-bar').className = 'env-selected-bar show';\
+    \};\
+    grid.appendChild(div);\
+  \});\
+\
+  var binsDiv = document.getElementById('env-bins');\
+  binsDiv.innerHTML = '';\
+  envBins.forEach(function(bin) \{\
+    var div = document.createElement('div');\
+    div.className = 'env-bin';\
+    div.id = 'ebin-' + bin.id;\
+    div.innerHTML = '<div class="bin-dot" style="background:' + bin.color + ';"></div>' +\
+                    '<div class="bin-name">' + bin.name + '</div>' +\
+                    '<div class="bin-count" id="ebin-count-' + bin.id + '">0 items</div>';\
+    div.onclick = function() \{ envSort(bin.id); \};\
+    binsDiv.appendChild(div);\
+  \});\
+\}\
+\
+function envSort(binId) \{\
+  if (!envSelectedItem) \{\
+    var fb = document.getElementById('env-fb');\
+    fb.textContent = 'Select an item first.';\
+    fb.className = 'g-fb show no';\
+    return;\
+  \}\
+  var item = envSelectedItem;\
+  envSelectedItem = null;\
+  document.getElementById('env-selected-bar').className = 'env-selected-bar';\
+  document.querySelectorAll('.env-item').forEach(function(i)\{ i.style.borderColor = ''; \});\
+  var fb = document.getElementById('env-fb');\
+  if (item.bin === binId) \{\
+    envCorrectCount++;\
+    envUsed[item.id] = true;\
+    document.getElementById('eitem-' + item.id).classList.add('used');\
+    var countEl = document.getElementById('ebin-count-' + binId);\
+    var cur = parseInt(countEl.textContent) || 0;\
+    countEl.textContent = (cur + 1) + ' item' + (cur + 1 !== 1 ? 's' : '');\
+    document.getElementById('env-correct').textContent = envCorrectCount;\
+    document.getElementById('env-remaining').textContent = envItems.length - envCorrectCount;\
+    var msgs = \{\
+      recycle: 'Correct! Recycling saves energy and reduces landfill waste.',\
+      compost: 'Correct! Composting turns organic waste into nutrient-rich soil.',\
+      trash:   'Correct! Some items cannot be recycled or composted safely.'\
+    \};\
+    fb.textContent = msgs[binId];\
+    fb.className = 'g-fb show ok';\
+    if (envCorrectCount === envItems.length) \{\
+      setTimeout(function()\{ fb.textContent = 'You sorted everything correctly. Well done!'; fb.className = 'g-fb show ok'; \}, 400);\
+    \}\
+  \} else \{\
+    var hints = \{\
+      recycle: 'Can it be processed and made into something new?',\
+      compost: 'Is it natural and organic? Will it break down on its own?',\
+      trash:   'It cannot be recycled or composted safely, so it goes to landfill.'\
+    \};\
+    fb.textContent = 'Not quite. Hint: ' + hints[item.bin];\
+    fb.className = 'g-fb show no';\
+  \}\
+\}\
+\
+function envReset() \{\
+  envSelectedItem = null; envCorrectCount = 0; envUsed = \{\};\
+  document.getElementById('env-correct').textContent = 0;\
+  document.getElementById('env-remaining').textContent = envItems.length;\
+  document.getElementById('env-fb').className = 'g-fb';\
+  document.getElementById('env-selected-bar').className = 'env-selected-bar';\
+  envInit();\
+\}\
+\
+// PHYSICS GAME\
+var physAngle = 30, physMass = 1, physLaunching = false;\
+\
+function physUpdateRamp() \{\
+  physAngle = parseInt(document.getElementById('phys-angle').value);\
+  document.getElementById('phys-angle-val').textContent = physAngle + 'deg';\
+  document.getElementById('phys-ramp').style.transform = 'rotate(-' + physAngle + 'deg)';\
+  var ball = document.getElementById('phys-ball');\
+  var rad = physAngle * Math.PI / 180;\
+  var s = 14 + (physMass - 1) * 4;\
+  ball.style.left = (20 + 120 * Math.cos(rad) - s) + 'px';\
+  ball.style.bottom = (40 + 120 * Math.sin(rad) - s) + 'px';\
+\}\
+\
+function physUpdateMass() \{\
+  physMass = parseInt(document.getElementById('phys-mass').value);\
+  document.getElementById('phys-mass-val').textContent = physMass + ' kg';\
+  var sizes = [28, 32, 36, 40, 44];\
+  var s = sizes[physMass - 1];\
+  var ball = document.getElementById('phys-ball');\
+  ball.style.width = s + 'px';\
+  ball.style.height = s + 'px';\
+  physUpdateRamp();\
+\}\
+\
+function physLaunch() \{\
+  if (physLaunching) return;\
+  physLaunching = true;\
+  document.getElementById('phys-launch-btn').disabled = true;\
+  document.getElementById('phys-marker').style.display = 'none';\
+  document.getElementById('phys-dist-label').style.display = 'none';\
+  document.getElementById('phys-fb').className = 'g-fb';\
+  var rad = physAngle * Math.PI / 180;\
+  var s = 14 + (physMass - 1) * 4;\
+  var startX = 20 + 120 * Math.cos(rad) - s;\
+  var startY = 40 + 120 * Math.sin(rad) - s;\
+  var g = 9.8, v0 = 8 + physAngle * 0.3;\
+  var friction = 0.05 * physMass;\
+  var vx = v0 * Math.cos(rad) - friction;\
+  var vy = v0 * Math.sin(rad);\
+  var scale = 4, t = 0, dt = 0.05;\
+  var ball = document.getElementById('phys-ball');\
+  ball.style.transition = 'none';\
+  var canvas = document.getElementById('phys-canvas');\
+  var maxX = 0;\
+  var interval = setInterval(function() \{\
+    t += dt;\
+    var x = startX + (vx * t) * scale;\
+    var y = startY + (vy * t - 0.5 * g * t * t) * scale;\
+    if (x > maxX) maxX = x;\
+    if (y < 40 - s || x > canvas.offsetWidth - 30) \{\
+      clearInterval(interval);\
+      physLaunching = false;\
+      document.getElementById('phys-launch-btn').disabled = false;\
+      var dist = Math.round((maxX - startX) / scale * 10);\
+      document.getElementById('phys-marker').style.left = Math.min(maxX, canvas.offsetWidth - 30) + 'px';\
+      document.getElementById('phys-marker').style.display = 'block';\
+      document.getElementById('phys-dist-label').style.left = Math.min(maxX, canvas.offsetWidth - 30) + 'px';\
+      document.getElementById('phys-dist-label').textContent = dist + ' units';\
+      document.getElementById('phys-dist-label').style.display = 'block';\
+      var fb = document.getElementById('phys-fb');\
+      if (dist >= 300) \{\
+        fb.textContent = dist + ' units! Great combination. The optimal launch angle in physics is 45 degrees. Try it with different masses.';\
+        fb.className = 'g-fb show ok';\
+      \} else if (dist >= 150) \{\
+        fb.textContent = dist + ' units. Try adjusting the angle toward 45 degrees and reducing mass to go further.';\
+        fb.className = 'g-fb show info';\
+      \} else \{\
+        fb.textContent = dist + ' units. A steeper angle gives more height. Try around 40 to 50 degrees for maximum distance.';\
+        fb.className = 'g-fb show no';\
+      \}\
+    \} else \{\
+      ball.style.left = x + 'px';\
+      ball.style.bottom = y + 'px';\
+    \}\
+  \}, 30);\
+\}\
+\
+function physReset() \{\
+  physLaunching = false;\
+  document.getElementById('phys-angle').value = 30; physAngle = 30;\
+  document.getElementById('phys-mass').value = 1; physMass = 1;\
+  document.getElementById('phys-angle-val').textContent = '30deg';\
+  document.getElementById('phys-mass-val').textContent = '1 kg';\
+  var ball = document.getElementById('phys-ball');\
+  ball.style.width = '28px'; ball.style.height = '28px';\
+  document.getElementById('phys-marker').style.display = 'none';\
+  document.getElementById('phys-dist-label').style.display = 'none';\
+  document.getElementById('phys-fb').className = 'g-fb';\
+  document.getElementById('phys-launch-btn').disabled = false;\
+  physUpdateRamp();\
+\}\
+\
+// QUIZ\
+var questions = [\
+  \{\
+    q: "On a free afternoon, you would most likely...",\
+    opts: [\
+      \{ text: "Go outside and observe something in nature", tags: ["Environmental Science","Biology"] \},\
+      \{ text: "Take something apart to see how and why it works", tags: ["Engineering","Physics"] \},\
+      \{ text: "Look up a random science fact and end up reading about it for an hour", tags: ["Biology","Chemistry"] \},\
+      \{ text: "Try to build or code something from scratch", tags: ["Computer Science","Engineering"] \},\
+    ]\
+  \},\
+  \{\
+    q: "Which of these questions appeals to you the most?",\
+    opts: [\
+      \{ text: "How do our brains store and recall memories?", tags: ["Biology"] \},\
+      \{ text: "How do apps or websites predict what you are going to type next?", tags: ["Computer Science"] \},\
+      \{ text: "What makes certain materials stronger than others at the molecular level?", tags: ["Chemistry","Engineering"] \},\
+      \{ text: "Could we ever fully reverse the damage humans have done to ecosystems?", tags: ["Environmental Science","Physics"] \}\
+    ]\
+  \},\
+  \{\
+    q: "When something breaks around the house, you...",\
+    opts: [\
+      \{ text: "Try to fix it yourself and figure out why it stopped working", tags: ["Engineering"] \},\
+      \{ text: "Look up how it works before deciding what to do about it", tags: ["Computer Science","Biology"] \},\
+      \{ text: "Feel curious about the materials or forces involved", tags: ["Chemistry","Physics"] \},\
+      \{ text: "Think about the waste and whether the parts can be salvaged", tags: ["Environmental Science"] \}\
+    ]\
+  \},\
+  \{\
+    q: "Your ideal kind of work day looks like...",\
+    opts: [\
+      \{ text: "Running experiments in a lab and carefully recording what happens", tags: ["Chemistry","Biology"] \},\
+      \{ text: "Building and physically testing something you designed yourself", tags: ["Engineering"] \},\
+      \{ text: "Writing and debugging code to solve a specific, well-defined problem", tags: ["Computer Science"] \},\
+      \{ text: "Collecting data out in a field, forest, or neighborhood", tags: ["Environmental Science","Physics"] \}\
+    ]\
+  \},\
+  \{\
+    q: "Which of these issues bothers you the most?",\
+    opts: [\
+      \{ text: "Diseases that affect millions of people with no cure in sight", tags: ["Biology","Chemistry"] \},\
+      \{ text: "Systems that technically work but waste massive amounts of time and resources", tags: ["Engineering","Computer Science"] \},\
+      \{ text: "Rising sea levels and the communities already being displaced by climate change", tags: ["Environmental Science"] \},\
+      \{ text: "Fundamental mysteries about the universe that science still cannot explain", tags: ["Physics"] \}\
+    ]\
+  \},\
+  \{\
+    q: "When you explain something to a friend, you tend to...",\
+    opts: [\
+      \{ text: "Talk about real-world consequences and why it actually matters to people", tags: ["Environmental Science"] \},\
+      \{ text: "Draw diagrams and show how the parts physically connect", tags: ["Engineering","Physics"] \},\
+      \{ text: "Use examples from the human body or from nature", tags: ["Biology"] \},\
+      \{ text: "Write out a logical sequence of steps or a simple formula", tags: ["Computer Science","Chemistry"] \},\
+    ]\
+  \},\
+  \{\
+    q: "Which class or subject do you enjoy or are most curious about?",\
+    opts: [\
+      \{ text: "Biology or anatomy, learning about how living things are structured", tags: ["Biology"] \},\
+      \{ text: "Computer science or math logic, working through problems step by step", tags: ["Computer Science"] \},\
+      \{ text: "Chemistry or earth science, understanding what things are made of", tags: ["Chemistry"] \},\
+      \{ text: "Physics or astronomy, studying forces, motion, and the scale of the universe", tags: ["Physics"] \}\
+    ]\
+  \},\
+  \{\
+    q: "When you see a problem, your first instinct is to...",\
+    opts: [\
+      \{ text: "Think about what is physically or chemically causing it", tags: ["Chemistry","Physics"] \},\
+      \{ text: "Break it into smaller steps and start building toward a solution", tags: ["Engineering","Computer Science"] \},\
+      \{ text: "Research whether something similar has happened in living systems or nature", tags: ["Biology"] \},\
+      \{ text: "Think about who is affected and what the long-term impact looks like", tags: ["Environmental Science"] \}\
+    ]\
+  \},\
+  \{\
+    q: "What kind of impact do you most want your work to have?",\
+    opts: [\
+      \{ text: "Helping people understand, prevent, or treat illness", tags: ["Biology","Chemistry"] \},\
+      \{ text: "Making systems faster, smarter, or more efficient for everyone", tags: ["Computer Science","Engineering"] \},\
+      \{ text: "Protecting ecosystems and reducing the harm humans cause to the natural world", tags: ["Environmental Science"] \},\
+      \{ text: "Uncovering how the physical universe actually works at a fundamental level", tags: ["Physics"] \}\
+    ]\
+  \},\
+  \{\
+    q: "On a Saturday morning, which of these would you most want to read?",\
+    opts: [\
+      \{ text: "An article explaining how CRISPR gene editing can treat inherited diseases", tags: ["Biology"] \},\
+      \{ text: "A behind-the-scenes look at how a popular app or algorithm was built", tags: ["Computer Science"] \},\
+      \{ text: "A deep dive into why metals rust or how polymers form", tags: ["Chemistry","Engineering"] \},\
+      \{ text: "An investigation into local pollution, wildlife decline, or climate data", tags: ["Environmental Science","Physics"] \}\
+    ]\
+  \}\
+];\
+var currentQ = 0, answers = [], tagCounts = \{\};\
+\
+function renderQuiz() \{\
+  var box = document.getElementById('quiz-box');\
+  var q = questions[currentQ];\
+  var progress = Math.round((currentQ / questions.length) * 100);\
+  box.innerHTML =\
+    '<div class="quiz-progress">Question ' + (currentQ+1) + ' of ' + questions.length + '</div>' +\
+    '<div class="quiz-bar"><div class="quiz-bar-fill" style="width:' + progress + '%"></div></div>' +\
+    '<div class="quiz-q">' + q.q + '</div>' +\
+    '<div class="quiz-options">' +\
+      q.opts.map(function(o,i)\{\
+        return '<button class="quiz-option ' + (answers[currentQ]===i?'selected':'') + '" onclick="selectOption(' + i + ')">' + o.text + '</button>';\
+      \}).join('') +\
+    '</div>' +\
+    '<div class="quiz-nav">' +\
+      '<button class="btn-outline" onclick="prevQ()" style="' + (currentQ===0?'visibility:hidden':'') + '">Back</button>' +\
+      '<button class="btn-primary" onclick="nextQ()"' + (answers[currentQ]===undefined?' disabled style="opacity:0.4"':'') + '>' +\
+        (currentQ===questions.length-1?'See My Results':'Next') +\
+      '</button>' +\
+    '</div>';\
+\}\
+\
+function selectOption(i) \{ answers[currentQ] = i; renderQuiz(); \}\
+\
+function nextQ() \{\
+  if (answers[currentQ] === undefined) return;\
+  var tags = questions[currentQ].opts[answers[currentQ]].tags;\
+  tags.forEach(function(t)\{ tagCounts[t] = (tagCounts[t]||0)+1; \});\
+  if (currentQ < questions.length-1) \{ currentQ++; renderQuiz(); \} else showResult();\
+\}\
+\
+function prevQ() \{ if (currentQ > 0) \{ currentQ--; renderQuiz(); \} \}\
+\
+function showResult() \{\
+  var sorted = Object.entries(tagCounts).sort(function(a,b)\{ return b[1]-a[1]; \});\
+  var top = sorted.slice(0,3).map(function(e)\{ return e[0]; \});\
+  document.getElementById('quiz-box').innerHTML =\
+    '<div class="quiz-result">' +\
+    '<h2>Your top match: ' + top[0] + '</h2>' +\
+    '<p>Based on your answers, these fields seem like the best fit for how you think and what you care about.</p>' +\
+    '<div class="result-tags">' + top.map(function(t)\{ return '<span class="rtag">' + t + '</span>'; \}).join('') + '</div>' +\
+    '<button class="btn-primary" onclick="showPage(\\'explore\\')">Explore these fields</button> ' +\
+    '<button class="btn-outline" onclick="resetQuiz()" style="margin-top:0.5rem">Take it again</button>' +\
+    '</div>';\
+\}\
+\
+function resetQuiz() \{ currentQ=0; answers=[]; tagCounts=\{\}; renderQuiz(); \}\
+\
+function handleNotify() \{\
+  var v = document.getElementById('notify-email').value;\
+  if (v && v.includes('@')) \{\
+    document.getElementById('notify-msg').style.display = 'block';\
+    document.getElementById('notify-email').value = '';\
+  \}\
+\}\
+\
+// INIT\
+csInit();\
+chemInit();\
+engInit();\
+envInit();\
+physUpdateRamp();\
+renderQuiz();\
+</script>\
+</body>\
+</html>\
+}
