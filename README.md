@@ -1,1 +1,1 @@
-# stemexplorer
+# stemify
