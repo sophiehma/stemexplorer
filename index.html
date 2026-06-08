@@ -208,46 +208,6 @@
     .quiz-result .result-tags \{ display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; \}\
     .quiz-result .rtag \{ background: var(--green-light); color: var(--green-dark); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.85rem; font-weight: 600; \}\
 \
-    
-html<!-- ABOUT -->
-<div class="page" id="page-about">
-  <div class="about-wrap">
-    <div class="about-card">
-      <div class="creator-top">
-        <div class="creator-avatar">👩‍💻</div>
-        <div>
-          <div class="creator-name">Sophie Ma</div>
-          <div class="creator-role">Founder, STEMExplorer</div>
-        </div>
-      </div>
-      <p>Hi, my name is Sophie, and I'm the founder of STEMExplorer. Growing up with both of my parents working as computer science professors sparked my curiosity about technology and innovation from a very young age. I was always surrounded by conversations about problem-solving and writing research papers, which inspired me to explore STEM for myself.</p>
-      <p>Even though I always knew I wanted to pursue a STEM-related field, I often found the subject extremely overwhelming. For me, the idea of science and engineering felt mentally demanding, and I wasn't always sure where to begin. I also realized that I didn't fully understand what each STEM field actually involved or what different career paths looked like. It was difficult to find clear, accessible resources that explained these opportunities in a way that felt approachable.</p>
-    </div>
-    <div class="about-card">
-      <h3>Why STEMExplorer exists</h3>
-      <p>That's why I created STEMExplorer. I wanted to build the resource I wish I had when I was starting out: a place where students can learn about different STEM fields, discover opportunities to explore more deeply, and foster their ideas without feeling intimidated or discouraged.</p>
-      <p>Not everyone has access to great science programs at school. Not everyone knows which questions to ask, or where to start. STEMExplorer exists to make STEM more accessible and understandable for everyone, regardless of their background or prior experience. Whether you're interested in engineering, computer science, medicine, environmental science, mathematics, or something else entirely, this platform is designed to help you find your path.</p>
-    </div>
-  </div>
-</div>
-
-    /* RESOURCES */\
-    .resources-wrap \{ max-width: 720px; margin: 0 auto; padding: 4rem 2rem; text-align: center; \}\
-    .coming-soon-badge \{ display: inline-block; background: var(--amber-light); color: #633806; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.5rem; \}\
-    .resources-wrap h1 \{ font-size: 2rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.75rem; \}\
-    .resources-wrap .sub \{ color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; \}\
-    .resource-preview-grid \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 2.5rem; \}\
-    .resource-preview-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1rem; opacity: 0.6; \}\
-    .resource-preview-card .res-dot \{ width: 20px; height: 20px; border-radius: 50%; margin: 0 auto 0.75rem; \}\
-    .resource-preview-card h4 \{ font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.25rem; \}\
-    .resource-preview-card p \{ font-size: 0.82rem; color: var(--muted); \}\
-    .notify-box \{ background: var(--green-light); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; \}\
-    .notify-box h3 \{ font-size: 1.1rem; font-weight: 700; color: var(--green-dark); \}\
-    .notify-box p \{ color: var(--muted); font-size: 0.9rem; \}\
-    .notify-row \{ display: flex; gap: 0.5rem; width: 100%; max-width: 400px; \}\
-    .notify-row input \{ flex: 1; padding: 0.65rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; background: #fff; color: var(--text); \}\
-    .notify-row input:focus \{ outline: none; border-color: var(--green); \}\
-\
     footer \{ background: var(--green-dark); color: #9FE1CB; text-align: center; padding: 2rem; font-size: 0.85rem; margin-top: 4rem; \}\
     footer strong \{ color: #fff; \}\
 \
@@ -667,53 +627,44 @@ html<!-- ABOUT -->
   </div>\
 </div>\
 \
-<!-- ABOUT -->\
-<div class="page" id="page-about">\
-  <div class="about-wrap">\
-    <div class="about-card">\
-      <div class="creator-top">\
-        <div class="creator-avatar" id="creator-avatar">\
-          <span id="avatar-placeholder" style="width:100%;height:100%;background:var(--green-light);display:block;border-radius:50%;"></span>\
-        </div>\
-        <div>\
-          <div class="creator-name">Your Name Here</div>\
-          <div class="creator-role">Founder, STEMExplorer</div>\
-        </div>\
-      </div>\
-      <p>Write a short intro about yourself here. Who are you? What inspired you to start STEMExplorer?</p>\
-      <p>A second paragraph about your background, your connection to STEM, or what you hope this site does for people.</p>\
-    </div>\
-    <div class="about-card">\
-      <h3>Why STEMExplorer exists</h3>\
-      <p>Not everyone has access to great science programs at school. Not everyone knows which questions to ask, or where to start. STEMExplorer was built to change that, to make STEM feel like something you belong in, regardless of your background.</p>\
-      <p>Add anything else you want people to know here.</p>\
-    </div>\
-  </div>\
-</div>\
-\
-<!-- RESOURCES -->\
-<div class="page" id="page-resources">\
-  <div class="resources-wrap">\
-    <div class="coming-soon-badge">Coming Soon</div>\
-    <h1>Resources</h1>\
-    <p class="sub">We're building something great here. Sign up below to be the first to know when resources go live.</p>\
-    <div class="resource-preview-grid">\
-      <div class="resource-preview-card"><div class="res-dot" style="background:var(--amber-light);border:2px solid var(--amber);"></div><h4>Summer Camp</h4><p>Sign up for our hands-on STEM summer program</p></div>\
-      <div class="resource-preview-card"><div class="res-dot" style="background:var(--green-light);border:2px solid var(--green);"></div><h4>Volunteer</h4><p>Opportunities at local shelters and community orgs</p></div>\
-      <div class="resource-preview-card"><div class="res-dot" style="background:var(--blue-light);border:2px solid var(--blue);"></div><h4>Free Guides</h4><p>Downloadable STEM explainers and activity sheets</p></div>\
-      <div class="resource-preview-card"><div class="res-dot" style="background:var(--purple-light);border:2px solid var(--purple);"></div><h4>Useful Links</h4><p>Curated tools, videos, and outside resources</p></div>\
-    </div>\
-    <div class="notify-box">\
-      <h3>Get notified when we launch</h3>\
-      <p>Drop your email and we'll let you know when resources are ready.</p>\
-      <div class="notify-row">\
-        <input type="email" placeholder="your@email.com" id="notify-email"/>\
-        <button class="btn-primary" onclick="handleNotify()">Notify me</button>\
-      </div>\
-      <p id="notify-msg" style="color:var(--green-dark);font-weight:600;display:none;">You're on the list!</p>\
-    </div>\
-  </div>\
-</div>\
+html<!-- ABOUT -->
+<div class="page" id="page-about">
+  <div class="about-wrap">
+    <div class="about-card">
+      <div class="creator-top">
+        <div class="creator-avatar">👩‍💻</div>
+        <div>
+          <div class="creator-name">Sophie Ma</div>
+          <div class="creator-role">Founder, STEMExplorer</div>
+        </div>
+      </div>
+      <p>Hi, my name is Sophie, and I'm the founder of STEMExplorer. Growing up with both of my parents working as computer science professors sparked my curiosity about technology and innovation from a very young age. I was always surrounded by conversations about problem-solving and writing research papers, which inspired me to explore STEM for myself.</p>
+      <p>Even though I always knew I wanted to pursue a STEM-related field, I often found the subject extremely overwhelming. For me, the idea of science and engineering felt mentally demanding, and I wasn't always sure where to begin. I also realized that I didn't fully understand what each STEM field actually involved or what different career paths looked like. It was difficult to find clear, accessible resources that explained these opportunities in a way that felt approachable.</p>
+    </div>
+    <div class="about-card">
+      <h3>Why STEMExplorer exists</h3>
+      <p>That's why I created STEMExplorer. I wanted to build the resource I wish I had when I was starting out: a place where students can learn about different STEM fields, discover opportunities to explore more deeply, and foster their ideas without feeling intimidated or discouraged.</p>
+      <p>Not everyone has access to great science programs at school. Not everyone knows which questions to ask, or where to start. STEMExplorer exists to make STEM more accessible and understandable for everyone, regardless of their background or prior experience. Whether you're interested in engineering, computer science, medicine, environmental science, mathematics, or something else entirely, this platform is designed to help you find your path.</p>
+    </div>
+  </div>
+</div>
+
+    /* RESOURCES */\
+    .resources-wrap \{ max-width: 720px; margin: 0 auto; padding: 4rem 2rem; text-align: center; \}\
+    .coming-soon-badge \{ display: inline-block; background: var(--amber-light); color: #633806; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.5rem; \}\
+    .resources-wrap h1 \{ font-size: 2rem; font-weight: 800; color: var(--green-dark); margin-bottom: 0.75rem; \}\
+    .resources-wrap .sub \{ color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; \}\
+    .resource-preview-grid \{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 2.5rem; \}\
+    .resource-preview-card \{ background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1rem; opacity: 0.6; \}\
+    .resource-preview-card .res-dot \{ width: 20px; height: 20px; border-radius: 50%; margin: 0 auto 0.75rem; \}\
+    .resource-preview-card h4 \{ font-size: 0.95rem; font-weight: 700; color: var(--green-dark); margin-bottom: 0.25rem; \}\
+    .resource-preview-card p \{ font-size: 0.82rem; color: var(--muted); \}\
+    .notify-box \{ background: var(--green-light); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; \}\
+    .notify-box h3 \{ font-size: 1.1rem; font-weight: 700; color: var(--green-dark); \}\
+    .notify-box p \{ color: var(--muted); font-size: 0.9rem; \}\
+    .notify-row \{ display: flex; gap: 0.5rem; width: 100%; max-width: 400px; \}\
+    .notify-row input \{ flex: 1; padding: 0.65rem 1rem; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; background: #fff; color: var(--text); \}\
+    .notify-row input:focus \{ outline: none; border-color: var(--green); \}\
 \
 <footer>\
   <strong>STEMExplorer</strong>: Opening the door to STEM for everyone.\
